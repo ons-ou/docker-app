@@ -1,0 +1,29 @@
+name: Run Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout du code
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Configurer Python
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      # Installer les dépendances
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Exécuter les tests
+      - name: Run PyTest
+        run: pytest
